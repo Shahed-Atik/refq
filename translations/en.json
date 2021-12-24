@@ -1,0 +1,16 @@
+{
+  "message": {
+    "errorToastDefaultMessage" : "Something went wrong",
+    "successToastDefaultMessage" : "Done Successfully",
+    "emptyData" : "Empty",
+    "retry" : "Retry",
+    "noInternet": "No internet connection",
+    "timeOut": "Server connection timed out"
+  },
+  "landing":{
+    "getStarted": "GET STARTED"
+  },
+  "home": {
+    "more": "more"
+  }
+}
