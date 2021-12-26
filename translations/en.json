@@ -11,6 +11,9 @@
     "getStarted": "GET STARTED"
   },
   "home": {
-    "more": "more"
+    "more": "more",
+    "title": "Report an injury",
+    "take_a_photo": "Take a photo",
+    "enter_location": "Choose the location of injury"
   }
 }

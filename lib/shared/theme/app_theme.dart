@@ -19,7 +19,7 @@ class AppTheme {
           textTheme: textTheme(isDark: false),
           colorScheme: ColorScheme.light(
             primary: primaryColor ?? AppColors.primary,
-            secondary: primaryColor ?? AppColors.secondary,
+            secondary: AppColors.secondary,
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
@@ -59,7 +59,7 @@ class AppTheme {
         fontFamily: "SF",
         colorScheme: ColorScheme.dark(
             primary: primaryColor ?? AppColors.primary,
-            secondary: primaryColor ?? AppColors.secondary),
+            secondary: AppColors.secondary),
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
           primary: Colors.transparent,

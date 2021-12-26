@@ -5,6 +5,7 @@ import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/shared_elevated_button.dart';
 
+import 'component/map_card.dart';
 import 'component/profile_image.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -29,9 +30,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: horizontalAppPadding.sp,
-              vertical: horizontalAppPadding.sp),
+          padding: EdgeInsets.only(
+              left: horizontalAppPadding.sp,
+              right: horizontalAppPadding.sp,
+              top: horizontalAppPadding.sp),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Report',
+                      LocaleKeys.home_title.tr(),
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     Container(
@@ -61,16 +63,40 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Expanded(
                   child: ListView(
+                    physics: const BouncingScrollPhysics(),
                     children: [
                       SizedBox(
                         height: 20.h,
+                      ),
+                      Text(
+                        LocaleKeys.home_take_a_photo.tr(),
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlign: TextAlign.start,
+                      ),
+                      SizedBox(
+                        height: 10.h,
                       ),
                       const ProfileImage(
                         image: null,
                       ),
                       SizedBox(
-                        height: 300.h,
+                        height: 10.h,
                       ),
+                      Text(
+                        LocaleKeys.home_enter_location.tr(),
+                        style: Theme.of(context).textTheme.headline6,
+                        textAlign: TextAlign.start,
+                      ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      MapCard(),
+                      SizedBox(
+                        height: 20.h,
+                      ),
+                      Center(
+                          child: SharedOutlinedButton(
+                              text: "Send injury", onPressed: () {})),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Row(

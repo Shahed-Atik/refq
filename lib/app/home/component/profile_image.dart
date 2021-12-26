@@ -12,8 +12,7 @@ class ProfileImage extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Container(
+    return Container(
       width: (imageSize + imageSize).r,
       height: imageSize.r,
       decoration: BoxDecoration(
@@ -50,6 +49,6 @@ class ProfileImage extends StatelessWidget {
                 width: imageSize.w,
                 height: imageSize.w,
               )),
-    ));
+    );
   }
 }

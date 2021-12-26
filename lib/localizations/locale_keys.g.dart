@@ -11,6 +11,9 @@ abstract class  LocaleKeys {
   static const landing_getStarted = 'landing.getStarted';
   static const landing = 'landing';
   static const home_more = 'home.more';
+  static const home_title = 'home.title';
+  static const home_take_a_photo = 'home.take_a_photo';
+  static const home_enter_location = 'home.enter_location';
   static const home = 'home';
 
 }

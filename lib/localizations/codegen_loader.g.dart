@@ -27,7 +27,10 @@ class CodegenLoader extends AssetLoader{
     "getStarted": "GET STARTED"
   },
   "home": {
-    "more": "more"
+    "more": "more",
+    "title": "Report an injury",
+    "take_a_photo": "Take a photo",
+    "enter_location": "Choose the location of injury"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};

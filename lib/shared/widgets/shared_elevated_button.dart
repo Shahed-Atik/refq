@@ -24,7 +24,7 @@ class SharedElevatedButton extends StatelessWidget {
               0.1,
               0.8,
             ], colors: [
-              Theme.of(context).colorScheme.secondary,
+              AppColors.darkPrimary,
               Theme.of(context).colorScheme.primary,
             ]),
             borderRadius: borderRadiusCircular,
