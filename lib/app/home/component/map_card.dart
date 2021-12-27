@@ -1,25 +1,29 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:refq_mongo/app/home/map_screen.dart';
+import 'package:refq_mongo/app/home/store/home_store.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 
-class MapCard extends StatelessWidget {
-  MapCard({Key? key}) : super(key: key);
+class MapCard extends StatefulWidget {
+  const MapCard({Key? key, required this.store}) : super(key: key);
+  final HomeStore store;
 
-  ///for map
-  Completer<GoogleMapController> mapController = Completer();
-  final CameraPosition kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
-  LatLng? selectedLocation;
-  Set<Marker> markers = Set<Marker>();
+  @override
+  State<MapCard> createState() => _MapCardState();
+}
 
+class _MapCardState extends State<MapCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () {
+        print("Sf");
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MapScreen(),
+        ));
+      },
       child: Container(
         height: 150.0.h,
         decoration: BoxDecoration(
@@ -36,32 +40,35 @@ class MapCard extends StatelessWidget {
         child: Center(
           child: ClipRRect(
             borderRadius: borderRadiusCircular,
-            child: GoogleMap(
-              onTap: (_) {
-                // Get.to(MapScreen(
-                //   sendCaseController: controller,
-                // ));
-              },
-              markers: markers,
-              mapToolbarEnabled: false,
-              trafficEnabled: false,
-              zoomControlsEnabled: false,
-              zoomGesturesEnabled: false,
-              compassEnabled: false,
-              mapType: MapType.normal,
-              buildingsEnabled: false,
-              indoorViewEnabled: false,
-              liteModeEnabled: false,
-              initialCameraPosition: kGooglePlex,
-              onMapCreated: (GoogleMapController controller) async {
-                mapController.complete(controller);
-                String style = await DefaultAssetBundle.of(context).loadString(
-                    Theme.of(context).brightness == Brightness.dark
-                        ? Assets.mapStyleDarkStyle
-                        : Assets.mapStyleLightStyle);
-                //customize your map style at: https://mapstyle.withgoogle.com/
-                controller.setMapStyle(style);
-              },
+            child: IgnorePointer(
+              ignoring: false,
+              child: Observer(
+                builder: (context) => GoogleMap(
+                  onTap: (v) {
+                    widget.store.changeLocation(v);
+                  },
+                  markers: widget.store.markers.toSet(),
+                  mapToolbarEnabled: false,
+                  trafficEnabled: false,
+                  zoomControlsEnabled: false,
+                  zoomGesturesEnabled: false,
+                  compassEnabled: false,
+                  mapType: MapType.normal,
+                  buildingsEnabled: false,
+                  indoorViewEnabled: false,
+                  liteModeEnabled: false,
+                  initialCameraPosition: widget.store.kGooglePlex,
+                  onMapCreated: (GoogleMapController controller) async {
+                    widget.store.mapController.complete(controller);
+                    String style = await DefaultAssetBundle.of(context)
+                        .loadString(
+                            Theme.of(context).brightness == Brightness.dark
+                                ? Assets.mapStyleDarkStyle
+                                : Assets.mapStyleLightStyle);
+                    controller.setMapStyle(style);
+                  },
+                ),
+              ),
             ),
           ),
         ),

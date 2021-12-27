@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:refq_mongo/app/home/store/home_store.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
@@ -10,21 +11,12 @@ import 'component/profile_image.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final HomeStore _store = HomeStore();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,19 +37,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       LocaleKeys.home_title.tr(),
                       style: Theme.of(context).textTheme.headline5,
                     ),
-                    Container(
-                      padding: EdgeInsets.all(13.sp),
-                      child: const Icon(Icons.notifications),
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).scaffoldBackgroundColor,
-                          shape: BoxShape.circle,
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Colors.black12,
-                                offset: Offset(1.0, 1.0),
-                                blurRadius: 7,
-                                spreadRadius: 1)
-                          ]),
+                    SharedCircularButton(
+                      icon: Icons.notifications,
+                      onPressed: () {},
                     ),
                   ],
                 ),
@@ -90,7 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         height: 10.h,
                       ),
-                      MapCard(),
+                      MapCard(
+                        store: _store,
+                      ),
                       SizedBox(
                         height: 20.h,
                       ),
@@ -125,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       )
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),

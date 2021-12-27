@@ -31,6 +31,9 @@ class CodegenLoader extends AssetLoader{
     "title": "Report an injury",
     "take_a_photo": "Take a photo",
     "enter_location": "Choose the location of injury"
+  },
+  "map": {
+    "enter_location": "Choose the location"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};

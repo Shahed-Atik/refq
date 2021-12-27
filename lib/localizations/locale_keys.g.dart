@@ -15,5 +15,7 @@ abstract class  LocaleKeys {
   static const home_take_a_photo = 'home.take_a_photo';
   static const home_enter_location = 'home.enter_location';
   static const home = 'home';
+  static const map_enter_location = 'map.enter_location';
+  static const map = 'map';
 
 }

@@ -15,5 +15,8 @@
     "title": "Report an injury",
     "take_a_photo": "Take a photo",
     "enter_location": "Choose the location of injury"
-  }
+  },
+  "map": {
+  "enter_location": "Choose the location"
+}
 }
