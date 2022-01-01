@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_store.g.dart';
@@ -16,14 +18,24 @@ abstract class HomeStoreBase with Store {
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
-
   LatLng? selectedLocation;
 
   @observable
   bool loading = false;
 
+  final ImagePicker _picker = ImagePicker();
+
+  @observable
+  File? image;
+
   @action
-  takePhoto() {}
+  takePhoto() async {
+    final XFile? pickedFile =
+        await _picker.pickImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      image = File(pickedFile.path);
+    }
+  }
 
   onSubmit() async {}
 

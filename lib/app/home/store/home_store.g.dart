@@ -24,6 +24,28 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  final _$imageAtom = Atom(name: 'HomeStoreBase.image');
+
+  @override
+  File? get image {
+    _$imageAtom.reportRead();
+    return super.image;
+  }
+
+  @override
+  set image(File? value) {
+    _$imageAtom.reportWrite(value, super.image, () {
+      super.image = value;
+    });
+  }
+
+  final _$takePhotoAsyncAction = AsyncAction('HomeStoreBase.takePhoto');
+
+  @override
+  Future takePhoto() {
+    return _$takePhotoAsyncAction.run(() => super.takePhoto());
+  }
+
   final _$changeLocationAsyncAction =
       AsyncAction('HomeStoreBase.changeLocation');
 
@@ -39,24 +61,11 @@ mixin _$HomeStore on HomeStoreBase, Store {
     return _$_addMarkerAsyncAction.run(() => super._addMarker(point));
   }
 
-  final _$HomeStoreBaseActionController =
-      ActionController(name: 'HomeStoreBase');
-
-  @override
-  dynamic takePhoto() {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.takePhoto');
-    try {
-      return super.takePhoto();
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''
-loading: ${loading}
+loading: ${loading},
+image: ${image}
     ''';
   }
 }

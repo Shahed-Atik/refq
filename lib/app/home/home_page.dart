@@ -47,9 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
                       SizedBox(
                         height: 10.h,
                       ),
-                      const ProfileImage(
-                        image: null,
-                      ),
+                      Observer(builder: (context) {
+                        return ProfileImage(
+                          image: _store.image,
+                          onTap: () => {_store.takePhoto()},
+                        );
+                      }),
                       SizedBox(
                         height: 10.h,
                       ),
