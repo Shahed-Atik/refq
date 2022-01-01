@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:refq_mongo/shared/widgets/shared_elevated_button.dart';
 
 class AppFadeButton extends StatelessWidget {
@@ -16,16 +17,14 @@ class AppFadeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 110,
+      height: 75.r,
+      width: MediaQuery.of(context).size.width * 2 / 4,
       child: AnimatedOpacity(
         duration: const Duration(milliseconds: 700),
         opacity: opacity,
-        child: Padding(
-          padding: const EdgeInsets.only(left: 70, bottom: 16, right: 70),
-          child: SharedElevatedButton(
-            text: buttonText,
-            onPressed: onPressed,
-          ),
+        child: SharedElevatedButton(
+          text: buttonText,
+          onPressed: onPressed,
         ),
       ),
     );

@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SharedCircularButton extends StatelessWidget {
   const SharedCircularButton(
-      {Key? key, required this.onPressed, required this.icon})
+      {Key? key, required this.onPressed, required this.icon, this.background})
       : super(key: key);
   final IconData icon;
   final Function() onPressed;
-
+  final Color? background;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -16,7 +16,7 @@ class SharedCircularButton extends StatelessWidget {
         padding: EdgeInsets.all(13.sp),
         child: Icon(icon),
         decoration: BoxDecoration(
-            color: Theme.of(context).scaffoldBackgroundColor,
+            color: background ?? Theme.of(context).cardColor,
             shape: BoxShape.circle,
             boxShadow: const [
               BoxShadow(

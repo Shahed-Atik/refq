@@ -11,15 +11,20 @@ class BackgroundWithHands extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isLight = Theme.of(context).brightness == Brightness.light;
     return Stack(
       children: [
-        Image.asset(
-          Theme.of(context).brightness == Brightness.light
-              ? Assets.imageBackgroundWithHands
-              : Assets.imageHands,
-          fit: BoxFit.fill,
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Image.asset(
+            isLight ? Assets.imageBackgroundWithHands : Assets.imageHands,
+            fit: isLight ? BoxFit.fill : null,
+            width: isLight
+                ? MediaQuery.of(context).size.width
+                : MediaQuery.of(context).size.width * 2 / 3,
+            alignment: Alignment.bottomCenter,
+            height: MediaQuery.of(context).size.height,
+          ),
         ),
         child
       ],

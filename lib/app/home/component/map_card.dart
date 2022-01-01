@@ -19,9 +19,10 @@ class _MapCardState extends State<MapCard> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("Sf");
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => MapScreen(),
+          builder: (context) => MapScreen(
+            onTap: widget.store.changeLocation,
+          ),
         ));
       },
       child: Container(
@@ -41,12 +42,10 @@ class _MapCardState extends State<MapCard> {
           child: ClipRRect(
             borderRadius: borderRadiusCircular,
             child: IgnorePointer(
-              ignoring: false,
+              ignoring: true,
               child: Observer(
                 builder: (context) => GoogleMap(
-                  onTap: (v) {
-                    widget.store.changeLocation(v);
-                  },
+                  onTap: (v) {},
                   markers: widget.store.markers.toSet(),
                   mapToolbarEnabled: false,
                   trafficEnabled: false,

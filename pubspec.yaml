@@ -30,6 +30,7 @@ dependencies:
   flutter_native_splash: ^1.2.4
   cached_network_image: ^3.2.0
   google_maps_flutter: ^2.1.1
+  geolocator: ^8.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -40,6 +41,7 @@ dev_dependencies:
     sdk: flutter
   mobx_codegen: ^2.0.3
   build_runner: ^2.1.2
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

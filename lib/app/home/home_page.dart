@@ -6,6 +6,7 @@ import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/shared_elevated_button.dart';
 
+import 'component/appbar.dart';
 import 'component/map_card.dart';
 import 'component/profile_image.dart';
 
@@ -30,19 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      LocaleKeys.home_title.tr(),
-                      style: Theme.of(context).textTheme.headline5,
-                    ),
-                    SharedCircularButton(
-                      icon: Icons.notifications,
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
+                const CustomAppBar(),
                 Expanded(
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
