@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:refq_mongo/app/notification/notification_page.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 
 class CustomAppBar extends StatelessWidget {
@@ -21,7 +22,11 @@ class CustomAppBar extends StatelessWidget {
           background: isLight
               ? Theme.of(context).scaffoldBackgroundColor
               : Theme.of(context).cardColor,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const NotificationPage(),
+            ));
+          },
         ),
       ],
     );

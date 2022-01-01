@@ -8,11 +8,11 @@ class AppBackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topLeft,
+      alignment: Alignment.topRight,
       child: Padding(
         padding: EdgeInsets.all(horizontalAppPadding),
         child: SharedCircularButton(
-          icon: Icons.arrow_back_sharp,
+          icon: Icons.arrow_forward,
           onPressed: () {
             Navigator.of(context).pop();
           },

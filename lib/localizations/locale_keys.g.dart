@@ -21,5 +21,7 @@ abstract class  LocaleKeys {
   static const more_volunteer_desc = 'more.volunteer_desc';
   static const more_ok_button = 'more.ok_button';
   static const more = 'more';
+  static const notification_notification = 'notification.notification';
+  static const notification = 'notification';
 
 }

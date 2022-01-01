@@ -39,6 +39,9 @@ class CodegenLoader extends AssetLoader{
     "be_volunteer": "Be a volunteer!",
     "volunteer_desc": "Receive notification if there were homeless animals around you",
     "ok_button": "ok"
+  },
+  "notification": {
+    "notification": "Notification"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};

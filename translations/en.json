@@ -22,5 +22,8 @@
   "be_volunteer": "Be a volunteer!",
   "volunteer_desc": "Receive notification if there were homeless animals around you",
   "ok_button": "ok"
-}
+},
+  "notification": {
+    "notification": "Notification"
+  }
 }
