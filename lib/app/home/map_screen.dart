@@ -3,6 +3,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:refq_mongo/app/home/store/map_store.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
+import 'package:refq_mongo/shared/widgets/app_back_button.dart';
 import 'package:refq_mongo/shared/widgets/shared_fade_button.dart';
 
 class MapScreen extends StatelessWidget {
@@ -61,18 +62,7 @@ class MapScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.topLeft,
-              child: Padding(
-                padding: EdgeInsets.all(horizontalAppPadding),
-                child: SharedCircularButton(
-                  icon: Icons.arrow_back_sharp,
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ),
-            ),
+            const AppBackButton()
           ],
         ),
       ),

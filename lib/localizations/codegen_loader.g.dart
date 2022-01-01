@@ -34,6 +34,11 @@ class CodegenLoader extends AssetLoader{
   },
   "map": {
     "enter_location": "Choose the location"
+  },
+  "more": {
+    "be_volunteer": "Be a volunteer!",
+    "volunteer_desc": "Receive notification if there were homeless animals around you",
+    "ok_button": "ok"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};

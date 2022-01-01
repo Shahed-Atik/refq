@@ -17,5 +17,9 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const map_enter_location = 'map.enter_location';
   static const map = 'map';
+  static const more_be_volunteer = 'more.be_volunteer';
+  static const more_volunteer_desc = 'more.volunteer_desc';
+  static const more_ok_button = 'more.ok_button';
+  static const more = 'more';
 
 }

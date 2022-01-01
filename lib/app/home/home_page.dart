@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:refq_mongo/app/home/store/home_store.dart';
+import 'package:refq_mongo/app/more/more_page.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
@@ -72,7 +73,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       Center(
                           child: SharedOutlinedButton(
-                              text: "Send injury", onPressed: () {})),
+                              text: "Send injury",
+                              onPressed: () => {_store.onSubmit()})),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Row(
@@ -92,7 +94,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             Expanded(
                               flex: 1,
                               child: SharedElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const MorePage(),
+                                  ));
+                                },
                                 text: LocaleKeys.home_more.tr(),
                               ),
                             ),
