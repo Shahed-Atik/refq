@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:refq_mongo/app/more/store/more_store.dart';
+import 'package:refq_mongo/app/notification/component/notification_card.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/app_back_button.dart';
@@ -36,10 +37,30 @@ class _NotificationPageState extends State<NotificationPage> {
               child: ListView(
                 padding: EdgeInsets.only(
                     left: horizontalAppPadding.sp,
-                    right: horizontalAppPadding.sp,
-                    top: horizontalAppPadding.sp),
+                    right: horizontalAppPadding.sp),
                 physics: const BouncingScrollPhysics(),
-                children: [],
+                children: [
+                  NotificationCard(
+                      title: "title",
+                      decription: "decription",
+                      date: "date",
+                      adsImage: "adsImage"),
+                  NotificationCard(
+                      title: "title",
+                      decription: "decription",
+                      date: "date",
+                      adsImage: "adsImage"),
+                  NotificationCard(
+                      title: "title",
+                      decription: "decription",
+                      date: "date",
+                      adsImage: "adsImage"),
+                  NotificationCard(
+                      title: "title",
+                      decription: "decription",
+                      date: "date",
+                      adsImage: "adsImage"),
+                ],
               ),
             )
           ],

@@ -7,9 +7,9 @@ import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/shared_elevated_button.dart';
 
+import '../../shared/widgets/map_card.dart';
+import '../../shared/widgets/profile_image.dart';
 import 'component/appbar.dart';
-import 'component/map_card.dart';
-import 'component/profile_image.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

@@ -5,9 +5,9 @@ import 'package:refq_mongo/shared/utils/constant.dart';
 class SharedOutlinedButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
-
+  final Color? color;
   const SharedOutlinedButton(
-      {Key? key, required this.text, required this.onPressed})
+      {Key? key, required this.text, required this.onPressed, this.color})
       : super(key: key);
 
   @override
@@ -20,16 +20,17 @@ class SharedOutlinedButton extends StatelessWidget {
       child: OutlinedButton(
         onPressed: onPressed,
         style: OutlinedButton.styleFrom(
-          primary: themeData.colorScheme.secondary,
+          primary: color ?? themeData.colorScheme.secondary,
           elevation: 0,
-          side: BorderSide(width: 1.5, color: themeData.colorScheme.secondary),
+          side: BorderSide(
+              width: 1.5, color: color ?? themeData.colorScheme.secondary),
           shape: RoundedRectangleBorder(borderRadius: borderRadiusCircular),
           padding: EdgeInsets.symmetric(horizontal: 20.sp, vertical: 15.sp),
         ),
         child: Text(
           text,
           style: themeData.textTheme.button!
-              .copyWith(color: isLight ? Colors.amber : null),
+              .copyWith(color: color ?? (isLight ? Colors.amber : null)),
         ),
       ),
     );

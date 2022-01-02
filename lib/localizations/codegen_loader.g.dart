@@ -41,7 +41,16 @@ class CodegenLoader extends AssetLoader{
     "ok_button": "ok"
   },
   "notification": {
-    "notification": "Notification"
+    "notification": "Notification",
+    "injury_reported": "Injury has been reported",
+    "click_details": "Click to view details"
+  },
+  "injury_details": {
+    "injury_details": "Injury Details",
+    "injury_picture": "Injury picture",
+    "injury_location": "Injury location",
+    "accept_button": "Accept",
+    "reject_button": "Reject"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};

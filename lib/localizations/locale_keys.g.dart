@@ -22,6 +22,14 @@ abstract class  LocaleKeys {
   static const more_ok_button = 'more.ok_button';
   static const more = 'more';
   static const notification_notification = 'notification.notification';
+  static const notification_injury_reported = 'notification.injury_reported';
+  static const notification_click_details = 'notification.click_details';
   static const notification = 'notification';
+  static const injury_details_injury_details = 'injury_details.injury_details';
+  static const injury_details_injury_picture = 'injury_details.injury_picture';
+  static const injury_details_injury_location = 'injury_details.injury_location';
+  static const injury_details_accept_button = 'injury_details.accept_button';
+  static const injury_details_reject_button = 'injury_details.reject_button';
+  static const injury_details = 'injury_details';
 
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:refq_mongo/app/notification/injury_details_page.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 
 class NotificationCard extends StatelessWidget {
@@ -15,9 +16,14 @@ class NotificationCard extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final bool isLight = Theme.of(context).brightness == Brightness.light;
+
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 2.0.w),
+      margin: EdgeInsets.symmetric(vertical: 8.0.w),
       decoration: BoxDecoration(
+        color: isLight
+            ? Theme.of(context).scaffoldBackgroundColor
+            : Theme.of(context).cardColor,
         borderRadius: borderRadiusCircular,
         border: Border.all(color: AppColors.primary),
         boxShadow: const [
@@ -28,7 +34,31 @@ class NotificationCard extends StatelessWidget {
               spreadRadius: 1)
         ],
       ),
-      child: Container(),
+      child: ListTile(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const InjuryDetailsPage(),
+            ),
+          );
+        },
+        contentPadding: EdgeInsets.symmetric(horizontal: 10.r),
+        title: Text(
+          LocaleKeys.notification_injury_reported.tr(),
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        subtitle: Text(LocaleKeys.notification_click_details.tr()),
+        trailing: ClipRRect(
+          child: Image.asset(
+            "assets/image/googlemaps.jpg",
+            width: 80.r,
+            height: 80.r,
+            fit: BoxFit.fill,
+          ),
+          borderRadius: borderRadiusCircular,
+        ),
+      ),
     );
   }
 }
