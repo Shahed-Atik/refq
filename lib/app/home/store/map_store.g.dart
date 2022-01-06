@@ -40,11 +40,11 @@ mixin _$MapStore on MapStoreBase, Store {
     return _$changeLocationAsyncAction.run(() => super.changeLocation(value));
   }
 
-  final _$_addMarkerAsyncAction = AsyncAction('MapStoreBase._addMarker');
+  final _$addMarkerAsyncAction = AsyncAction('MapStoreBase.addMarker');
 
   @override
-  Future _addMarker(LatLng point) {
-    return _$_addMarkerAsyncAction.run(() => super._addMarker(point));
+  Future addMarker(LatLng point) {
+    return _$addMarkerAsyncAction.run(() => super.addMarker(point));
   }
 
   @override

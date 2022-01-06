@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:refq_mongo/app/notification/injury_details_page.dart';
+import 'package:refq_mongo/app/injury_details/injury_details_page.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 
 class NotificationCard extends StatelessWidget {

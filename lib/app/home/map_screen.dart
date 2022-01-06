@@ -6,10 +6,34 @@ import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/widgets/app_back_button.dart';
 import 'package:refq_mongo/shared/widgets/shared_fade_button.dart';
 
-class MapScreen extends StatelessWidget {
-  final MapStore _store = MapStore();
+class MapScreen extends StatefulWidget {
+  final LatLng? selectedLocation;
   final void Function(LatLng) onTap;
-  MapScreen({Key? key, required this.onTap}) : super(key: key);
+
+  ///when we display InjuryDetails we set this flag ```false```
+  final bool? enableChoosing;
+  const MapScreen(
+      {Key? key,
+      required this.onTap,
+      this.enableChoosing = true,
+      this.selectedLocation})
+      : super(key: key);
+
+  @override
+  State<MapScreen> createState() => _MapScreenState();
+}
+
+class _MapScreenState extends State<MapScreen> {
+  final MapStore _store = MapStore();
+
+  @override
+  void initState() {
+    if (widget.selectedLocation != null) {
+      _store.addMarker(widget.selectedLocation!);
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,10 +46,17 @@ class MapScreen extends StatelessWidget {
                 markers: _store.markers.toSet(),
                 zoomControlsEnabled: false,
                 onTap: (argument) {
-                  _store.changeLocation(argument);
+                  if (widget.enableChoosing!) {
+                    _store.changeLocation(argument);
+                  }
                 },
                 mapType: MapType.normal,
-                initialCameraPosition: _store.kGooglePlex,
+                initialCameraPosition: widget.selectedLocation != null
+                    ? CameraPosition(
+                        target: widget.selectedLocation!,
+                        zoom: 14.4746,
+                      )
+                    : _store.kGooglePlex,
                 onMapCreated: (GoogleMapController googleCon) async {
                   _store.mapController = googleCon;
                   String style = await DefaultAssetBundle.of(context)
@@ -42,9 +73,12 @@ class MapScreen extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: AppFadeButton(
                     buttonText: LocaleKeys.map_enter_location.tr(),
-                    opacity: _store.isChoosedLocation ? 1 : 0,
+                    opacity:
+                        (_store.isChoosedLocation && widget.enableChoosing!)
+                            ? 1
+                            : 0,
                     onPressed: () {
-                      onTap(_store.selectedLocation!);
+                      widget.onTap(_store.selectedLocation!);
                       Navigator.of(context).pop();
                     }),
               );

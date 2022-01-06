@@ -9,6 +9,21 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$HomeStore on HomeStoreBase, Store {
+  final _$selectedLocationAtom = Atom(name: 'HomeStoreBase.selectedLocation');
+
+  @override
+  LatLng? get selectedLocation {
+    _$selectedLocationAtom.reportRead();
+    return super.selectedLocation;
+  }
+
+  @override
+  set selectedLocation(LatLng? value) {
+    _$selectedLocationAtom.reportWrite(value, super.selectedLocation, () {
+      super.selectedLocation = value;
+    });
+  }
+
   final _$loadingAtom = Atom(name: 'HomeStoreBase.loading');
 
   @override
@@ -64,6 +79,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
   @override
   String toString() {
     return '''
+selectedLocation: ${selectedLocation},
 loading: ${loading},
 image: ${image}
     ''';

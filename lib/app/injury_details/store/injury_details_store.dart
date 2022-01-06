@@ -1,19 +1,17 @@
 import 'dart:async';
 
-import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobx/mobx.dart';
-import 'package:refq_mongo/shared/services/location_service.dart';
 
-part 'map_store.g.dart';
+part 'injury_details_store.g.dart';
 
-class MapStore = MapStoreBase with _$MapStore;
+class InjuryDetailsStore = InjuryDetailsStoreBase with _$InjuryDetailsStore;
 
-abstract class MapStoreBase with Store {
-  MapStoreBase();
+abstract class InjuryDetailsStoreBase with Store {
+  InjuryDetailsStoreBase();
 
   ///for map
-  late GoogleMapController mapController;
+  Completer<GoogleMapController> mapController = Completer();
 
   final CameraPosition kGooglePlex = const CameraPosition(
     target: LatLng(37.42796133580664, -122.085749655962),
@@ -23,22 +21,30 @@ abstract class MapStoreBase with Store {
   @observable
   LatLng? selectedLocation;
 
+  @observable
+  late String image;
+
+  onInit({required String image, required LatLng location}) async {
+    this.image = image;
+    changeLocation(location);
+  }
+
   ObservableList<Marker> markers = ObservableList.of({});
 
   @action
   changeLocation(LatLng value) async {
     selectedLocation = value;
-    addMarker(value);
+    _addMarker(value);
+    final GoogleMapController controller = await mapController.future;
     CameraPosition _cameraPosition = CameraPosition(
       target: selectedLocation!,
       zoom: 17.00,
     );
-    mapController
-        .animateCamera(CameraUpdate.newCameraPosition(_cameraPosition));
+    controller.animateCamera(CameraUpdate.newCameraPosition(_cameraPosition));
   }
 
   @action
-  addMarker(LatLng point) async {
+  _addMarker(LatLng point) async {
     markers.clear();
     markers.add(Marker(
       markerId: MarkerId(point.toString()),
@@ -48,18 +54,5 @@ abstract class MapStoreBase with Store {
       ),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueYellow),
     ));
-  }
-
-  @computed
-  bool get isChoosedLocation => selectedLocation != null;
-
-  Future<void> getMyLocation() async {
-    Position _myLocation = await LocationService().getLocation();
-    CameraPosition _cameraPosition = CameraPosition(
-      target: LatLng(_myLocation.latitude, _myLocation.longitude),
-      zoom: 17.00,
-    );
-    mapController
-        .animateCamera(CameraUpdate.newCameraPosition(_cameraPosition));
   }
 }

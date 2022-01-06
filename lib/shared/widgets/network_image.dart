@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/widgets/loading_indicator.dart';
 
@@ -25,16 +24,16 @@ class AppNetworkImage extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: URL,
         fit: fit,
-        progressIndicatorBuilder: (context, url, downloadProgress) => Container(
+        progressIndicatorBuilder: (context, url, downloadProgress) => SizedBox(
             width: width * 0.5,
             height: height * 0.5,
             child: const Center(child: LoadingIndicator())),
         errorWidget: (context, url, error) => Container(
-          color: Colors.grey[200],
+          color: Theme.of(context).cardColor,
           child: Center(
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 5.0.h),
-              child: SvgPicture.asset(
+              child: Image.asset(
                 Assets.logoLightLogo,
                 height: 50.0.r,
                 width: 50.0.r,

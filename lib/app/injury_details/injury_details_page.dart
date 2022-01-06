@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:refq_mongo/app/home/store/home_store.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:refq_mongo/app/injury_details/store/injury_details_store.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/app_back_button.dart';
-import 'package:refq_mongo/shared/widgets/map_card.dart';
-import 'package:refq_mongo/shared/widgets/profile_image.dart';
+
+import 'component/injury_image.dart';
+import 'component/injury_location.dart';
 
 class InjuryDetailsPage extends StatefulWidget {
   const InjuryDetailsPage({Key? key}) : super(key: key);
@@ -13,7 +15,16 @@ class InjuryDetailsPage extends StatefulWidget {
 }
 
 class _InjuryDetailsPageState extends State<InjuryDetailsPage> {
-  final HomeStore _store = HomeStore();
+  final InjuryDetailsStore _store = InjuryDetailsStore();
+
+  @override
+  void initState() {
+    _store.onInit(
+        image: "image",
+        location: const LatLng(20.42796133580664, -100.085749655962));
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,10 +62,7 @@ class _InjuryDetailsPageState extends State<InjuryDetailsPage> {
                       height: 10.h,
                     ),
                     Observer(builder: (context) {
-                      return ProfileImage(
-                        image: _store.image,
-                        onTap: () => {_store.takePhoto()},
-                      );
+                      return InjuryImage(image: "image", onTap: () {});
                     }),
                     SizedBox(
                       height: 10.h,
@@ -67,7 +75,7 @@ class _InjuryDetailsPageState extends State<InjuryDetailsPage> {
                     SizedBox(
                       height: 10.h,
                     ),
-                    MapCard(
+                    InjuryLocation(
                       store: _store,
                     ),
                     SizedBox(
