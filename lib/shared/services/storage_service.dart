@@ -22,4 +22,12 @@ class StorageService {
     final flag = _sharedInstance.getBool("User_Profile");
     return flag ?? false;
   }
+
+  Future<void> setUserId(String userId) async {
+    await _sharedInstance.setString("User_Id", userId);
+  }
+
+  String getUserId() {
+    return _sharedInstance.getString("User_Id") ?? "";
+  }
 }

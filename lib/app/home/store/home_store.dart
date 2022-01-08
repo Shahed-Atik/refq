@@ -4,13 +4,22 @@ import 'dart:io';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
+import 'package:refq_mongo/app/home/repository/home_repository.dart';
+import 'package:refq_mongo/shared/network/exceptions/app_exception.dart';
+import 'package:refq_mongo/shared/widgets/toasts.dart';
+
+import '../../../main.dart';
 
 part 'home_store.g.dart';
 
 class HomeStore = HomeStoreBase with _$HomeStore;
 
 abstract class HomeStoreBase with Store {
-  HomeStoreBase();
+  HomeStoreBase() {
+    _repository = HomeRepository(dio);
+  }
+
+  late HomeRepository _repository;
 
   ///for map
   Completer<GoogleMapController> mapController = Completer();
@@ -38,7 +47,30 @@ abstract class HomeStoreBase with Store {
     }
   }
 
-  onSubmit() async {}
+  onSubmit(context) async {
+    if (selectedLocation == null || image == null) {
+      showErrorToast(errorMessage: "Enter all data please");
+    } else {
+      loading = true;
+      try {
+        final String? result = await _repository.sendCase(
+            image: image!, location: selectedLocation!);
+        if (result == "created") {
+          showSuccessToast(message: "The injury sent successfully");
+          selectedLocation = null;
+          image = null;
+        } else if (result == "No volunteers") {
+          showSuccessToast(message: "callDialog");
+          //  callDialog(context);
+        } else {
+          showErrorToast(errorMessage: "Please choose the location correctly");
+        }
+      } on AppException catch (e) {
+        showErrorToast(errorMessage: e.message);
+      }
+      loading = false;
+    }
+  }
 
   ObservableList<Marker> markers = ObservableList.of({});
 

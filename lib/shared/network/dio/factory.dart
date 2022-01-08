@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'request_interceptor.dart';
 
 class DioFactory {
-  static const String baseUrl = "http://bluebits-001-site1.ftempurl.com/api/";
+  static const String baseUrl = "https://refq-2021.herokuapp.com/";
 
   static Dio create() {
     final baseOptions = BaseOptions(

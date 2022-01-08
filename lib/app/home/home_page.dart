@@ -28,88 +28,109 @@ class _MyHomePageState extends State<MyHomePage> {
               left: horizontalAppPadding.sp,
               right: horizontalAppPadding.sp,
               top: horizontalAppPadding.sp),
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const CustomAppBar(),
-                Expanded(
-                  child: ListView(
-                    physics: const BouncingScrollPhysics(),
-                    children: [
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Text(
-                        LocaleKeys.home_take_a_photo.tr(),
-                        style: Theme.of(context).textTheme.headline6,
-                        textAlign: TextAlign.start,
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Observer(builder: (context) {
-                        return ProfileImage(
-                          image: _store.image,
-                          onTap: () => {_store.takePhoto()},
-                        );
-                      }),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      Text(
-                        LocaleKeys.home_enter_location.tr(),
-                        style: Theme.of(context).textTheme.headline6,
-                        textAlign: TextAlign.start,
-                      ),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      MapCard(
-                        store: _store,
-                      ),
-                      SizedBox(
-                        height: 20.h,
-                      ),
-                      Center(
-                          child: SharedOutlinedButton(
-                              text: "Send injury",
-                              onPressed: () => {_store.onSubmit()})),
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              width: 70.w,
-                              height: 70.w,
-                              child: SvgPicture.asset(
-                                Assets.svgPetsNeedHelp,
-                                fit: BoxFit.contain,
-                              ),
+          child: Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const CustomAppBar(),
+                    Expanded(
+                      child: ListView(
+                        physics: const BouncingScrollPhysics(),
+                        children: [
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Text(
+                            LocaleKeys.home_take_a_photo.tr(),
+                            style: Theme.of(context).textTheme.headline6,
+                            textAlign: TextAlign.start,
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Observer(builder: (context) {
+                            return ProfileImage(
+                              image: _store.image,
+                              onTap: () => {_store.takePhoto()},
+                            );
+                          }),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          Text(
+                            LocaleKeys.home_enter_location.tr(),
+                            style: Theme.of(context).textTheme.headline6,
+                            textAlign: TextAlign.start,
+                          ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          MapCard(
+                            store: _store,
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
+                          Center(
+                              child: SharedOutlinedButton(
+                                  text: "Send injury",
+                                  onPressed: () => {_store.onSubmit(context)})),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width: 70.w,
+                                  height: 70.w,
+                                  child: SvgPicture.asset(
+                                    Assets.svgPetsNeedHelp,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 20.sp,
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: SharedElevatedButton(
+                                    onPressed: () {
+                                      Navigator.of(context)
+                                          .push(MaterialPageRoute(
+                                        builder: (context) => const MorePage(),
+                                      ));
+                                    },
+                                    text: LocaleKeys.home_more.tr(),
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(
-                              width: 20.sp,
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: SharedElevatedButton(
-                                onPressed: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const MorePage(),
-                                  ));
-                                },
-                                text: LocaleKeys.home_more.tr(),
-                              ),
-                            ),
-                          ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Observer(
+                builder: (context) => (_store.loading)
+                    ? Positioned.fill(
+                        child: Container(
+                          height: double.maxFinite,
+                          width: double.maxFinite,
+                          color: Theme.of(context)
+                              .scaffoldBackgroundColor
+                              .withOpacity(0.5),
+                          child: const Center(
+                            child: CircularProgressIndicator(),
+                          ),
                         ),
                       )
-                    ],
-                  ),
-                ),
-              ],
-            ),
+                    : Container(),
+              )
+            ],
           ),
         ),
       ),
