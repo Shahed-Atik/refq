@@ -13,9 +13,9 @@ class DioFactory {
         connectTimeout: 30000);
     final dio = Dio(baseOptions);
     dio.interceptors.addAll([
+      RequestHeadersInterceptors(),
       LogInterceptor(
           requestBody: true, responseBody: true, request: true, error: true),
-      RequestHeadersInterceptors()
     ]);
     return dio;
   }

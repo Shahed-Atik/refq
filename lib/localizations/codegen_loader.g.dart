@@ -37,8 +37,11 @@ class CodegenLoader extends AssetLoader{
   },
   "more": {
     "be_volunteer": "Be a volunteer!",
+    "dont_be_volunteer": "Don't Be a volunteer!",
     "volunteer_desc": "Receive notification if there were homeless animals around you",
-    "ok_button": "ok"
+    "user_desc": "Don't Receive notification if there were homeless animals around you",
+    "ok_button": "ok",
+    "accepted_injuries_button": "Show accepted injuries"
   },
   "notification": {
     "notification": "Notification",

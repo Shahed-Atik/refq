@@ -18,8 +18,11 @@ abstract class  LocaleKeys {
   static const map_enter_location = 'map.enter_location';
   static const map = 'map';
   static const more_be_volunteer = 'more.be_volunteer';
+  static const more_dont_be_volunteer = 'more.dont_be_volunteer';
   static const more_volunteer_desc = 'more.volunteer_desc';
+  static const more_user_desc = 'more.user_desc';
   static const more_ok_button = 'more.ok_button';
+  static const more_accepted_injuries_button = 'more.accepted_injuries_button';
   static const more = 'more';
   static const notification_notification = 'notification.notification';
   static const notification_injury_reported = 'notification.injury_reported';

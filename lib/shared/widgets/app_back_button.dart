@@ -4,7 +4,6 @@ import '../export_shared.dart';
 
 class AppBackButton extends StatelessWidget {
   const AppBackButton({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final bool isLight = Theme.of(context).brightness == Brightness.light;

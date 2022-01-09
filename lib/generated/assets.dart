@@ -9,6 +9,7 @@ class Assets {
       'assets/image/background_with_hands.jpg';
   static const String imageGooglemaps = 'assets/image/googlemaps.jpg';
   static const String imageHands = 'assets/image/hands.png';
+  static const String imageSilent = 'assets/image/silent.png';
   static const String imageTemp1 = 'assets/image/temp1.jpg';
   static const String imageTemp2 = 'assets/image/temp2.jpg';
   static const String imageTemp3 = 'assets/image/temp3.jpg';

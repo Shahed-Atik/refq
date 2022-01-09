@@ -62,62 +62,46 @@ class _MorePageState extends State<MorePage> {
             top: horizontalAppPadding.sp),
         physics: const BouncingScrollPhysics(),
         children: [
+          Text(
+            LocaleKeys.more_dont_be_volunteer.tr(),
+            style: Theme.of(context).textTheme.headline5,
+            textAlign: TextAlign.center,
+          ),
           SizedBox(
             height: 20.h,
           ),
           Text(
-            LocaleKeys.more_be_volunteer.tr(),
+            LocaleKeys.more_user_desc.tr(),
             style: Theme.of(context).textTheme.headline6,
             textAlign: TextAlign.center,
           ),
           SizedBox(
-            height: 10.h,
+            height: 30.h,
           ),
           SizedBox(
-            height: 10.h,
-          ),
-          Text(
-            LocaleKeys.home_enter_location.tr(),
-            style: Theme.of(context).textTheme.headline6,
-            textAlign: TextAlign.start,
-          ),
-          SizedBox(
-            height: 10.h,
+            width: 70.w,
+            height: 70.w,
+            child: Image.asset(
+              Assets.imageSilent,
+              fit: BoxFit.contain,
+            ),
           ),
           SizedBox(
-            height: 20.h,
+            height: 30.h,
           ),
           Center(
-              child:
-                  SharedOutlinedButton(text: "Send injury", onPressed: () {})),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 70.w,
-                  height: 70.w,
-                  child: SvgPicture.asset(
-                    Assets.svgPetsNeedHelp,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-                SizedBox(
-                  width: 20.sp,
-                ),
-                Expanded(
-                  flex: 1,
-                  child: SharedElevatedButton(
-                    onPressed: () {
-                      _store.onOkButton();
-                    },
-                    text: LocaleKeys.home_more.tr(),
-                  ),
-                ),
-              ],
-            ),
-          )
+              child: SharedOutlinedButton(
+                  text: LocaleKeys.more_ok_button.tr(),
+                  onPressed: () {
+                    _store.onOkButton();
+                  })),
+          SizedBox(
+            height: 100.h,
+          ),
+          SharedElevatedButton(
+            onPressed: () {},
+            text: LocaleKeys.more_accepted_injuries_button.tr(),
+          ),
         ],
       ),
     );

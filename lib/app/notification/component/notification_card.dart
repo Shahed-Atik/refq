@@ -1,19 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:refq_mongo/app/injury_details/injury_details_page.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 
 class NotificationCard extends StatelessWidget {
-  final String title;
-  final String decription;
-  final String date;
-  final String? adsImage;
-  const NotificationCard(
-      {Key? key,
-      required this.title,
-      required this.decription,
-      required this.date,
-      required this.adsImage})
-      : super(key: key);
+  final Function() onTapCard;
+  const NotificationCard({Key? key, required this.onTapCard}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     final bool isLight = Theme.of(context).brightness == Brightness.light;
@@ -35,14 +25,7 @@ class NotificationCard extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const InjuryDetailsPage(),
-            ),
-          );
-        },
+        onTap: onTapCard,
         contentPadding: EdgeInsets.symmetric(horizontal: 10.r),
         title: Text(
           LocaleKeys.notification_injury_reported.tr(),

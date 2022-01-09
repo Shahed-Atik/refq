@@ -4,6 +4,7 @@ import 'package:refq_mongo/app/home/store/home_store.dart';
 import 'package:refq_mongo/app/more/more_page.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
+import 'package:refq_mongo/shared/services/storage_service.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/shared_elevated_button.dart';
 
@@ -21,6 +22,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final HomeStore _store = HomeStore();
   @override
   Widget build(BuildContext context) {
+    print("MyHomePage");
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -34,7 +36,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const CustomAppBar(),
+                    ///pass key to rebuild widget when user profile changes
+                    CustomAppBar(
+                      key: Key(StorageService().isVolunteer().toString()),
+                    ),
                     Expanded(
                       child: ListView(
                         physics: const BouncingScrollPhysics(),
@@ -96,11 +101,12 @@ class _MyHomePageState extends State<MyHomePage> {
                                 Expanded(
                                   flex: 1,
                                   child: SharedElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context)
+                                    onPressed: () async {
+                                      await Navigator.of(context)
                                           .push(MaterialPageRoute(
                                         builder: (context) => const MorePage(),
                                       ));
+                                      setState(() {});
                                     },
                                     text: LocaleKeys.home_more.tr(),
                                   ),
