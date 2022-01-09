@@ -57,9 +57,7 @@ class _AcceptedInjuryPageState extends State<AcceptedInjuryPage> {
                           right: horizontalAppPadding.sp),
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
-                        return NotificationCard(onTapCard: () {
-
-                        });
+                        return NotificationCard(onTapCard: () {});
                       },
                     ),
                     replacement: const Center(

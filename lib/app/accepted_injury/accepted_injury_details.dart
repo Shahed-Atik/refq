@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:refq_mongo/app/injury_details/component/injury_image.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/widgets/app_back_button.dart';
 
