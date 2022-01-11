@@ -54,6 +54,9 @@ class CodegenLoader extends AssetLoader{
     "injury_location": "Injury location",
     "accept_button": "Accept",
     "reject_button": "Reject"
+  },
+  "accepted_injury": {
+    "accepted_injury": "Accepted injuries"
   }
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};

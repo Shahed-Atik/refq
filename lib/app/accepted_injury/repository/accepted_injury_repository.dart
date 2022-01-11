@@ -1,22 +1,20 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
+import 'package:refq_mongo/app/notification/repository/notification_repository.dart';
 import 'package:refq_mongo/shared/services/storage_service.dart';
 
 class AcceptedInjuryRepository {
   final Dio _dio;
   AcceptedInjuryRepository(Dio dio) : _dio = dio;
 
-  ///get: get all Injuries
-  //https://refq-2021.herokuapp.com/post/temp/vid/61daeb67a05ee01b5d37327d
-  Future<List<Case>?> getInjuries() async {
+  ///get: get all accepted Injuries
+  Future<List<AcceptedInjury>?> getAcceptedInjuries() async {
     try {
       final String userId = StorageService().getUserId();
-      // final Response response = await _dio.get("post/temp/vid/$userId");
-      //todo
-      final Response response =
-          await _dio.get("post/temp/vid/61daeb67a05ee01b5d37327d");
-      return caseFromJson(response.data);
+      final Response response = await _dio.get("post/vid/$userId");
+      //
+      // final Response response =
+      //     await _dio.get("post/vid/61daeb67a05ee01b5d37327d");
+      return acceptedInjuryFromJson(response.data);
     } on DioError catch (e) {
       throw e.error;
     }
@@ -24,24 +22,63 @@ class AcceptedInjuryRepository {
 }
 
 ///*************** models****************
-List<Case> caseFromJson(List str) =>
-    List<Case>.from(str.map((x) => Case.fromJson(x)));
 
-String caseToJson(List<Case> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+List<AcceptedInjury> acceptedInjuryFromJson(List str) =>
+    List<AcceptedInjury>.from(str.map((x) => AcceptedInjury.fromJson(x)));
 
-class Case {
-  Case({
-    required this.post,
+class AcceptedInjury {
+  AcceptedInjury({
+    required this.description,
+    required this.id,
+    required this.location,
+    required this.date,
+    required this.imges,
+    required this.injuries,
   });
 
-  String post;
+  String description;
+  String id;
+  Location location;
+  DateTime date;
+  List<String> imges;
+  List<Injury> injuries;
 
-  factory Case.fromJson(Map<String, dynamic> json) => Case(
-        post: json["post"],
+  factory AcceptedInjury.fromJson(Map<String, dynamic> json) => AcceptedInjury(
+        description: json["description"],
+        id: json["_id"],
+        location: Location.fromJson(json["location"]),
+        date: DateTime.parse(json["date"]),
+        imges: List<String>.from(json["imges"].map((x) => x)),
+        injuries:
+            List<Injury>.from(json["injuries"].map((x) => Injury.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "post": post,
+        "description": description,
+        "_id": id,
+        "location": location.toJson(),
+        "date": date.toIso8601String(),
+        "imges": List<dynamic>.from(imges.map((x) => x)),
+        "injuries": List<dynamic>.from(injuries.map((x) => x.toJson())),
+      };
+}
+
+class Injury {
+  Injury({
+    required this.k,
+    required this.v,
+  });
+
+  String k;
+  String v;
+
+  factory Injury.fromJson(Map<String, dynamic> json) => Injury(
+        k: json["k"],
+        v: json["v"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "k": k,
+        "v": v,
       };
 }

@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:refq_mongo/app/accepted_injury/repository/accepted_injury_repository.dart';
 import 'package:refq_mongo/shared/services/storage_service.dart';
 
 class InjuryDetailsRepository {
@@ -25,6 +26,25 @@ class InjuryDetailsRepository {
       final String userId = StorageService().getUserId();
       final Response response = await _dio
           .post("post/refuse", data: {"postId": postId, "volunteerId": userId});
+      return response.data;
+    } on DioError catch (e) {
+      throw e.error;
+    }
+  }
+
+  ///PUT: send Injury Details
+  Future<String?> sendDetails(
+      {required String postId,
+      required String description,
+      required List<Injury> list}) async {
+    try {
+      final Response response = await _dio.put("post", data: {
+        "id": postId,
+        "img": "null",
+        "description": description,
+        "name": description,
+        "injuries": list.map((e) => e.toJson()).toList()
+      });
       return response.data;
     } on DioError catch (e) {
       throw e.error;

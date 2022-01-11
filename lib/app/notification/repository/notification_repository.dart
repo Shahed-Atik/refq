@@ -12,10 +12,9 @@ class NotificationRepository {
   Future<List<Case>?> getInjuries() async {
     try {
       final String userId = StorageService().getUserId();
-      // final Response response = await _dio.get("post/temp/vid/$userId");
-      //todo
-      final Response response =
-          await _dio.get("post/temp/vid/61daeb67a05ee01b5d37327d");
+      final Response response = await _dio.get("post/temp/vid/$userId");
+      // final Response response =
+      //     await _dio.get("post/temp/vid/61daeb67a05ee01b5d37327d");
       return caseFromJson(response.data);
     } on DioError catch (e) {
       throw e.error;

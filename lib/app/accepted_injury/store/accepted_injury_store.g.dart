@@ -24,18 +24,19 @@ mixin _$AcceptedInjuryStore on AcceptedInjuryStoreBase, Store {
     });
   }
 
-  final _$casesAtom = Atom(name: 'AcceptedInjuryStoreBase.cases');
+  final _$acceptedInjuriesAtom =
+      Atom(name: 'AcceptedInjuryStoreBase.acceptedInjuries');
 
   @override
-  List<Case> get cases {
-    _$casesAtom.reportRead();
-    return super.cases;
+  List<AcceptedInjury> get acceptedInjuries {
+    _$acceptedInjuriesAtom.reportRead();
+    return super.acceptedInjuries;
   }
 
   @override
-  set cases(List<Case> value) {
-    _$casesAtom.reportWrite(value, super.cases, () {
-      super.cases = value;
+  set acceptedInjuries(List<AcceptedInjury> value) {
+    _$acceptedInjuriesAtom.reportWrite(value, super.acceptedInjuries, () {
+      super.acceptedInjuries = value;
     });
   }
 
@@ -43,7 +44,7 @@ mixin _$AcceptedInjuryStore on AcceptedInjuryStoreBase, Store {
   String toString() {
     return '''
 loading: ${loading},
-cases: ${cases}
+acceptedInjuries: ${acceptedInjuries}
     ''';
   }
 }

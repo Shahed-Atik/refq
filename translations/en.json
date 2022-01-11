@@ -37,5 +37,7 @@
     "injury_location": "Injury location",
     "accept_button": "Accept",
     "reject_button": "Reject"
-  }
+  },"accepted_injury": {
+  "accepted_injury": "Accepted injuries"
+}
 }

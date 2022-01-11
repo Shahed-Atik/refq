@@ -34,5 +34,7 @@ abstract class  LocaleKeys {
   static const injury_details_accept_button = 'injury_details.accept_button';
   static const injury_details_reject_button = 'injury_details.reject_button';
   static const injury_details = 'injury_details';
+  static const accepted_injury_accepted_injury = 'accepted_injury.accepted_injury';
+  static const accepted_injury = 'accepted_injury';
 
 }

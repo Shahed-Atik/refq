@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:refq_mongo/shared/export_shared.dart';
 
 class MoreRepository {
   final Dio _dio;
@@ -9,10 +10,9 @@ class MoreRepository {
   Future<String> setVolunteer({required Position loc}) async {
     try {
       final Response response = await _dio.post("volunteer", data: {
-        //todo add fcm
-        "fcm": "1",
+        "fcm": firebaseToken,
         "lat": loc.latitude,
-        "lon": loc.latitude
+        "lon": loc.longitude
       });
       return response.data;
     } on DioError catch (e) {
@@ -22,9 +22,8 @@ class MoreRepository {
 
   ///put:  /volunteer
   removeVolunteer() async {
-    //todo add fcm
     try {
-      await _dio.put("volunteer", data: {"fcm": "1"});
+      await _dio.put("volunteer", data: {"fcm": firebaseToken});
     } on DioError catch (e) {
       throw e.error;
     }

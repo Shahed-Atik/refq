@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:refq_mongo/shared/export_shared.dart';
 
 class HomeRepository {
   final Dio _dio;
@@ -13,11 +14,10 @@ class HomeRepository {
     try {
       String? imageURL = await _uploadImage(image);
       if (imageURL != null) {
-        //todo add fcm
         final Response response = await _dio.post("post", data: {
-          "lat": location.latitude,
-          "lon": location.longitude,
-          "fcm": "1",
+          "lat": double.parse((location.latitude).toStringAsFixed(6)),
+          "lon": double.parse((location.longitude).toStringAsFixed(6)),
+          "fcm": firebaseToken,
           "img": imageURL
         });
         return response.data;

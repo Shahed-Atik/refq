@@ -61,7 +61,7 @@ abstract class HomeStoreBase with Store {
           selectedLocation = null;
           image = null;
         } else if (result == "No volunteers") {
-          showSuccessToast(message: "callDialog");
+          //  showSuccessToast(message: "callDialog");
           callDialog(context);
         } else {
           showErrorToast(errorMessage: "Please choose the location correctly");

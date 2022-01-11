@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:refq_mongo/app/accepted_injury/accepted_injury_page.dart';
 import 'package:refq_mongo/app/more/store/more_store.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
@@ -99,7 +100,11 @@ class _MorePageState extends State<MorePage> {
             height: 100.h,
           ),
           SharedElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const AcceptedInjuryPage(),
+              ));
+            },
             text: LocaleKeys.more_accepted_injuries_button.tr(),
           ),
         ],

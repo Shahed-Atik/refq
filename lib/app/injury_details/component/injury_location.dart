@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:refq_mongo/app/home/map_screen.dart';
-import 'package:refq_mongo/app/injury_details/store/injury_details_store.dart';
 import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 
 class InjuryLocation extends StatefulWidget {
   const InjuryLocation({Key? key, required this.store}) : super(key: key);
-  final InjuryDetailsStore store;
+  final dynamic store;
 
   @override
   State<InjuryLocation> createState() => _InjuryLocationState();
