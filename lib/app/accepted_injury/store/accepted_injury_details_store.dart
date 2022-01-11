@@ -7,9 +7,8 @@ import 'package:reactive_forms/reactive_forms.dart';
 import 'package:refq_mongo/app/accepted_injury/repository/accepted_injury_repository.dart';
 import 'package:refq_mongo/app/injury_details/repository/injury_details_repository.dart';
 import 'package:refq_mongo/shared/network/exceptions/app_exception.dart';
+import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/toasts.dart';
-
-import '../../../main.dart';
 
 part 'accepted_injury_details_store.g.dart';
 

@@ -6,9 +6,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:refq_mongo/app/injury_details/repository/injury_details_repository.dart';
 import 'package:refq_mongo/shared/network/exceptions/app_exception.dart';
+import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/toasts.dart';
-
-import '../../../main.dart';
 
 part 'injury_details_store.g.dart';
 

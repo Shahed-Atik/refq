@@ -3,9 +3,8 @@ import 'package:mobx/mobx.dart';
 import 'package:refq_mongo/app/accepted_injury/repository/accepted_injury_repository.dart';
 import 'package:refq_mongo/localizations/locale_keys.g.dart';
 import 'package:refq_mongo/shared/network/exceptions/app_exception.dart';
+import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/toasts.dart';
-
-import '../../../main.dart';
 
 part 'accepted_injury_store.g.dart';
 

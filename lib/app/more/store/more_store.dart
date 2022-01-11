@@ -1,10 +1,10 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:mobx/mobx.dart';
 import 'package:refq_mongo/app/more/repository/more_repository.dart';
-import 'package:refq_mongo/main.dart';
 import 'package:refq_mongo/shared/network/exceptions/app_exception.dart';
 import 'package:refq_mongo/shared/services/location_service.dart';
 import 'package:refq_mongo/shared/services/storage_service.dart';
+import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/toasts.dart';
 
 part 'more_store.g.dart';

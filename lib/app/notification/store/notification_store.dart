@@ -6,9 +6,8 @@ import 'package:refq_mongo/app/injury_details/injury_details_page.dart';
 import 'package:refq_mongo/app/notification/repository/notification_repository.dart';
 import 'package:refq_mongo/localizations/locale_keys.g.dart';
 import 'package:refq_mongo/shared/network/exceptions/app_exception.dart';
+import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/toasts.dart';
-
-import '../../../main.dart';
 
 part 'notification_store.g.dart';
 
