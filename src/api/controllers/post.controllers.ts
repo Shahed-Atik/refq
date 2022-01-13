@@ -248,7 +248,7 @@ function sendNotification(responser: any) {
     data: { id: "please" },
     notification: {
       title: "Help!",
-      body: "please save a soule",
+      body: "please save a soul",
     },
   };
 
