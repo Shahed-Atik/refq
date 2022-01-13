@@ -7,6 +7,7 @@ import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/services/storage_service.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 import 'package:refq_mongo/shared/widgets/app_back_button.dart';
+import 'package:refq_mongo/shared/widgets/loading_layer.dart';
 import 'package:refq_mongo/shared/widgets/shared_elevated_button.dart';
 
 class MorePage extends StatefulWidget {
@@ -33,20 +34,7 @@ class _MorePageState extends State<MorePage> {
                       : _buildUserBody()
                 ],
               ),
-              (_store.loading)
-                  ? Positioned.fill(
-                      child: Container(
-                        height: double.maxFinite,
-                        width: double.maxFinite,
-                        color: Theme.of(context)
-                            .scaffoldBackgroundColor
-                            .withOpacity(0.5),
-                        child: const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                    )
-                  : Container()
+              (_store.loading) ? const LoadingLayer() : Container()
             ],
           );
         }),

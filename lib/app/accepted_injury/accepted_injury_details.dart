@@ -6,6 +6,8 @@ import 'package:refq_mongo/app/accepted_injury/store/accepted_injury_details_sto
 import 'package:refq_mongo/app/injury_details/component/injury_location.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/widgets/app_back_button.dart';
+import 'package:refq_mongo/shared/widgets/loading_layer.dart';
+import 'package:refq_mongo/shared/widgets/shared_drop_down.dart';
 import 'package:refq_mongo/shared/widgets/shared_text_field.dart';
 
 class AcceptedInjuryDetails extends StatefulWidget {
@@ -109,26 +111,39 @@ class _AcceptedInjuryDetailsState extends State<AcceptedInjuryDetails> {
                             wrapped: true,
                           );
                         }),
-                        replacement: ChipsChoice<Injury>.multiple(
-                          padding: EdgeInsets.zero,
-                          mainAxisSize: MainAxisSize.min,
-                          spacing: 0,
-                          runSpacing: 0,
-                          value: _store.injuries.toList(),
-                          onChanged: (_) {},
-                          choiceItems: C2Choice.listFrom<Injury, Injury>(
-                            source: _store.injuries.toList(),
-                            value: (i, v) => v,
-                            label: (i, v) => v.v,
-                            disabled: (index, item) => true,
-                          ),
-                          choiceStyle: C2ChoiceStyle(
-                            color: Theme.of(context).colorScheme.secondary,
+                        replacement: IgnorePointer(
+                          child: ChipsChoice<Injury>.multiple(
                             padding: EdgeInsets.zero,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(5)),
+                            mainAxisSize: MainAxisSize.min,
+                            spacing: 0,
+                            runSpacing: 0,
+                            value: _store.injuries.toList(),
+                            onChanged: (_) {},
+                            choiceItems: C2Choice.listFrom<Injury, Injury>(
+                              source: _store.injuries.toList(),
+                              value: (i, v) => v,
+                              label: (i, v) => v.v,
+                            ),
+                            choiceStyle: C2ChoiceStyle(
+                              color: Theme.of(context).colorScheme.secondary,
+                              padding: EdgeInsets.zero,
+                              borderRadius:
+                                  const BorderRadius.all(Radius.circular(5)),
+                            ),
+                            wrapped: true,
                           ),
-                          wrapped: true,
+                        ),
+                      ),
+                      Visibility(
+                        visible: _canEdit,
+                        child: SharedDropDown(
+                          items: const ["pets", "wild animals", "birds"],
+                          formControlName: "name",
+                          validationMessages: (control) => {
+                            ValidationMessage.required:
+                                "Enter the animal's name"
+                          },
+                          hintText: "Animal's name",
                         ),
                       ),
                       SizedBox(
@@ -165,20 +180,8 @@ class _AcceptedInjuryDetailsState extends State<AcceptedInjuryDetails> {
           ),
         ),
         Observer(
-          builder: (context) => (_store.loading)
-              ? Positioned.fill(
-                  child: Container(
-                    height: double.maxFinite,
-                    width: double.maxFinite,
-                    color: Theme.of(context)
-                        .scaffoldBackgroundColor
-                        .withOpacity(0.5),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  ),
-                )
-              : Container(),
+          builder: (context) =>
+              (_store.loading) ? const LoadingLayer() : Container(),
         )
       ],
     );

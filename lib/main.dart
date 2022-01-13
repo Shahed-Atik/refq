@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:refq_mongo/shared/services/storage_service.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
 
@@ -14,6 +15,11 @@ void main() async {
   await initLibraries();
   final savedThemeMode = await AdaptiveTheme.getThemeMode();
   dio = DioFactory.create();
+  //stop rotation
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   runApp(EasyLocalization(
       child: AppWidget(savedThemeMode),

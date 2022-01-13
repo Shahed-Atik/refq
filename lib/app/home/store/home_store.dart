@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobx/mobx.dart';
+import 'package:reactive_forms/reactive_forms.dart';
 import 'package:refq_mongo/app/home/repository/home_repository.dart';
 import 'package:refq_mongo/shared/network/exceptions/app_exception.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
@@ -37,6 +38,17 @@ abstract class HomeStoreBase with Store {
 
   @observable
   File? image;
+
+  FormGroup form = FormGroup({
+    "lat": FormControl<double>(
+      validators: [
+        Validators.required,
+      ],
+    ),
+    'lag': FormControl<double>(validators: [
+      Validators.required,
+    ]),
+  });
 
   @action
   takePhoto() async {
@@ -84,6 +96,8 @@ abstract class HomeStoreBase with Store {
       zoom: 17.00,
     );
     controller.animateCamera(CameraUpdate.newCameraPosition(_cameraPosition));
+    form.control("lat").value = double.parse((selectedLocation!.latitude).toStringAsFixed(6));
+    form.control("lag").value = double.parse((selectedLocation!.longitude).toStringAsFixed(6));
   }
 
   @action

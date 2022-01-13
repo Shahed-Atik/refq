@@ -4,6 +4,7 @@ import 'package:refq_mongo/app/injury_details/store/injury_details_store.dart';
 import 'package:refq_mongo/app/notification/repository/notification_repository.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/widgets/app_back_button.dart';
+import 'package:refq_mongo/shared/widgets/loading_layer.dart';
 
 import 'component/injury_image.dart';
 import 'component/injury_location.dart';
@@ -125,20 +126,8 @@ class _InjuryDetailsPageState extends State<InjuryDetailsPage> {
               ),
             ),
             Observer(
-              builder: (context) => (_store.loading)
-                  ? Positioned.fill(
-                      child: Container(
-                        height: double.maxFinite,
-                        width: double.maxFinite,
-                        color: Theme.of(context)
-                            .scaffoldBackgroundColor
-                            .withOpacity(0.5),
-                        child: const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                      ),
-                    )
-                  : Container(),
+              builder: (context) =>
+                  (_store.loading) ? const LoadingLayer() : Container(),
             )
           ],
         ),

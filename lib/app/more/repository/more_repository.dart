@@ -11,8 +11,8 @@ class MoreRepository {
     try {
       final Response response = await _dio.post("volunteer", data: {
         "fcm": firebaseToken,
-        "lat": loc.latitude,
-        "lon": loc.longitude
+        "lat": double.parse((loc.latitude).toStringAsFixed(6)),
+        "lon": double.parse((loc.longitude).toStringAsFixed(6))
       });
       return response.data;
     } on DioError catch (e) {

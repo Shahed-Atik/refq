@@ -88,6 +88,7 @@ class _MapScreenState extends State<MapScreen> {
               child: Padding(
                 padding: EdgeInsets.all(13.sp),
                 child: SharedCircularButton(
+                  iconColor: AppColors.white,
                   background: Theme.of(context).colorScheme.primary,
                   icon: Icons.location_on,
                   onPressed: () {

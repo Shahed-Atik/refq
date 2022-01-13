@@ -6,11 +6,13 @@ import 'package:refq_mongo/generated/assets.dart';
 import 'package:refq_mongo/shared/export_shared.dart';
 import 'package:refq_mongo/shared/services/storage_service.dart';
 import 'package:refq_mongo/shared/utils/constant.dart';
+import 'package:refq_mongo/shared/widgets/loading_layer.dart';
 import 'package:refq_mongo/shared/widgets/shared_elevated_button.dart';
 
 import '../../shared/widgets/map_card.dart';
 import '../../shared/widgets/profile_image.dart';
 import 'component/appbar.dart';
+import 'component/location_fields.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -78,6 +80,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           SizedBox(
                             height: 20.h,
                           ),
+                          LocationFields(
+                            store: _store,
+                          ),
+                          SizedBox(
+                            height: 20.h,
+                          ),
                           Center(
                               child: SharedOutlinedButton(
                                   text: "Send injury",
@@ -121,20 +129,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               Observer(
-                builder: (context) => (_store.loading)
-                    ? Positioned.fill(
-                        child: Container(
-                          height: double.maxFinite,
-                          width: double.maxFinite,
-                          color: Theme.of(context)
-                              .scaffoldBackgroundColor
-                              .withOpacity(0.5),
-                          child: const Center(
-                            child: CircularProgressIndicator(),
-                          ),
-                        ),
-                      )
-                    : Container(),
+                builder: (context) =>
+                    (_store.loading) ? const LoadingLayer() : Container(),
               )
             ],
           ),

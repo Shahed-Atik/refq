@@ -97,6 +97,7 @@ class AcceptedInjuryCard extends StatelessWidget {
               child: Text(
                 DateFormat('yyyy-MM-dd\nHH:mm').format(data.date).toString(),
                 overflow: TextOverflow.ellipsis,
+                style: const TextStyle(color: AppColors.grey),
               ),
             ),
           ],

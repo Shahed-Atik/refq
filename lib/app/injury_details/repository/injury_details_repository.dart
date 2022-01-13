@@ -36,13 +36,14 @@ class InjuryDetailsRepository {
   Future<String?> sendDetails(
       {required String postId,
       required String description,
+      required String name,
       required List<Injury> list}) async {
     try {
       final Response response = await _dio.put("post", data: {
         "id": postId,
         "img": "null",
         "description": description,
-        "name": description,
+        "name": name,
         "injuries": list.map((e) => e.toJson()).toList()
       });
       return response.data;

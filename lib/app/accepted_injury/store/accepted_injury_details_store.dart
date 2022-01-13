@@ -56,6 +56,11 @@ abstract class AcceptedInjuryDetailsStoreBase with Store {
     changeLocation(LatLng(data.location.lat, data.location.lon));
     postId = data.id;
     form = FormGroup({
+      "name": FormControl<String>(
+        validators: [
+          Validators.required,
+        ],
+      ),
       'desc': FormControl<String>(validators: [
         Validators.required,
       ], value: decs != "null" ? data.description : null),
@@ -103,6 +108,7 @@ abstract class AcceptedInjuryDetailsStoreBase with Store {
           String? response = await _repository.sendDetails(
               postId: postId,
               description: form.control("desc").value,
+              name: form.control("name").value,
               list: injuries.toList());
           if (response != null && response == "updated") {
             showSuccessToast(message: "Details sent successfully");
